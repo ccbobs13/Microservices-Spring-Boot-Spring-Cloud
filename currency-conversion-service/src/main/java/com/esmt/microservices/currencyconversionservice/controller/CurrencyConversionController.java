@@ -42,11 +42,11 @@ public class CurrencyConversionController {
 
 	}
 
-	@GetMapping("/currency-conversion-feign/user/{login}/from/{from}/to/{to}/amount/{amount}")
-	public CurrencyConversion getCurrencyConversionFeign(@PathVariable String login, @PathVariable String from,
-			@PathVariable String to, @PathVariable BigDecimal amount) {
+	@GetMapping("/currency-conversion-feign/login/{login}/password/{password}/from/{from}/to/{to}/amount/{amount}")
+	public CurrencyConversion getCurrencyConversionFeign(@PathVariable String login, @PathVariable String password,
+			@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal amount) {
 
-		boolean state = userProxy.authenticate(login);
+		boolean state = userProxy.authenticate(login, password);
 		if (state) {
 
 			CurrencyConversion currencyConversion = proxy.getCurrencyConversion(from, to);
@@ -58,6 +58,5 @@ public class CurrencyConversionController {
 		throw new RuntimeException("Vous devez etre authentifie pour pouvoir faire une conversion");
 
 	}
-
 
 }

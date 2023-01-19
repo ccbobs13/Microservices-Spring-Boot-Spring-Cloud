@@ -14,10 +14,10 @@ public class UserController {
 	@Autowired
 	UserRepository repo;
 
-	@GetMapping("/user-authentification-service/login/{login}")
-	public boolean authenticate(@PathVariable String login) {
+	@GetMapping("/user-authentification-service/login/{login}/password/{password}")
+	public boolean authenticate(@PathVariable String login, @PathVariable String password) {
 
-		User user = repo.findByLogin(login);
+		User user = repo.findByLoginAndPassword(login, password);
 		if (user == null)
 			return false;
 		return true;

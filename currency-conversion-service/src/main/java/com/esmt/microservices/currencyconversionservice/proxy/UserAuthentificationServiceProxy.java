@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "user-authentification-service")
 public interface UserAuthentificationServiceProxy {
 
-	@GetMapping("/user-authentification-service/login/{login}")
-	public boolean authenticate(@PathVariable String login);
+	@GetMapping("/user-authentification-service/login/{login}/password/{password}")
+	public boolean authenticate(@PathVariable String login, @PathVariable String password);
 
 }
